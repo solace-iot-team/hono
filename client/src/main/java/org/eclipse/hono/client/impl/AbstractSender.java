@@ -296,8 +296,9 @@ public abstract class AbstractSender extends AbstractHonoClient implements Messa
                     result.fail(e);
                 }
             } else {
+                final String simpleName = (remoteState!=null)?remoteState.getClass().getSimpleName():null;
                 LOG.debug("peer did not settle message [message ID: {}, remote state: {}], failing delivery",
-                        messageId, remoteState.getClass().getSimpleName());
+                        messageId, simpleName);
                 final ServiceInvocationException e = new ServerErrorException(
                         HttpURLConnection.HTTP_INTERNAL_ERROR,
                         "peer did not settle message, failing delivery");
