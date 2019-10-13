@@ -293,7 +293,7 @@ public final class MessageHelper {
      */
     public static String getTenantIdAnnotation(final Message msg) {
         Objects.requireNonNull(msg);
-        return getAnnotation(msg, APP_PROPERTY_TENANT_ID, String.class);
+        return getTenantId(msg);
     }
 
     /**

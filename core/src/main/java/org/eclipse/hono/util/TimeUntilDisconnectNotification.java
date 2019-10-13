@@ -151,7 +151,7 @@ public final class TimeUntilDisconnectNotification {
         if (ttd == null) {
             return Optional.empty();
         } else if (ttd == 0 || MessageHelper.isDeviceCurrentlyConnected(msg)) {
-            final String tenantId = MessageHelper.getTenantIdAnnotation(msg);
+            final String tenantId = MessageHelper.getTenantId(msg);
             final String deviceId = MessageHelper.getDeviceId(msg);
 
             if (tenantId != null && deviceId != null) {

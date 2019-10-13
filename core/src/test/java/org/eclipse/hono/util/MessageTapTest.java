@@ -113,7 +113,7 @@ public class MessageTapTest {
         final Message msg = ProtonHelper.message();
         MessageHelper.setCreationTime(msg);
         MessageHelper.addDeviceId(msg, "4711");
-        MessageHelper.addAnnotation(msg, MessageHelper.APP_PROPERTY_TENANT_ID, Constants.DEFAULT_TENANT);
+        MessageHelper.addTenantId(msg, Constants.DEFAULT_TENANT);
         return msg;
     }
 
