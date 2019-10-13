@@ -126,7 +126,7 @@ public class CommandResponseSenderImpl extends AbstractSender implements Command
             props.setFlowLatency(DEFAULT_COMMAND_FLOW_LATENCY);
         }
 
-        return con.createSender(targetAddress, ProtonQoS.AT_LEAST_ONCE, closeHook)
+        return con.createSender(targetAddress, ProtonQoS.AT_MOST_ONCE, closeHook)
                 .map(sender -> (CommandResponseSender) new CommandResponseSenderImpl(con, sender, tenantId,
                         targetAddress));
     }

@@ -145,7 +145,8 @@ public class AsyncCommandClientImpl extends AbstractSender implements AsyncComma
         Objects.requireNonNull(tenantId);
 
         final String linkTargetAddress = AsyncCommandClientImpl.getLinkTargetAddress(tenantId);
-        return con.createSender(linkTargetAddress, ProtonQoS.AT_LEAST_ONCE, closeHook)
+        // solace direct messaging
+        return con.createSender(linkTargetAddress, ProtonQoS.AT_MOST_ONCE, closeHook)
                 .compose(sender -> Future.succeededFuture(new AsyncCommandClientImpl(con, sender, tenantId, linkTargetAddress)));
     }
 }

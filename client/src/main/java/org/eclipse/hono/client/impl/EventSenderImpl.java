@@ -103,7 +103,8 @@ public final class EventSenderImpl extends AbstractDownstreamSender {
      */
     @Override
     public Future<ProtonDelivery> sendAndWaitForOutcome(final Message message) {
-
+        // solace - fix - must be durable per spec
+        message.setDurable(true);
         return send(message);
     }
 
@@ -115,7 +116,8 @@ public final class EventSenderImpl extends AbstractDownstreamSender {
      */
     @Override
     public Future<ProtonDelivery> sendAndWaitForOutcome(final Message message, final SpanContext parent) {
-
+        // solace - fix - must be durable per spec
+        message.setDurable(true);
         return send(message, parent);
     }
 

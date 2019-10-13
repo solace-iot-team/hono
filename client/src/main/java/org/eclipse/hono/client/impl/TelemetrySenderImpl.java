@@ -98,7 +98,7 @@ public final class TelemetrySenderImpl extends AbstractDownstreamSender {
         Objects.requireNonNull(tenantId);
 
         final String targetAddress = getTargetAddress(tenantId, null);
-        return con.createSender(targetAddress, ProtonQoS.AT_LEAST_ONCE, remoteCloseHook)
+        return con.createSender(targetAddress, ProtonQoS.AT_MOST_ONCE, remoteCloseHook)
         .compose(sender -> Future.succeededFuture(new TelemetrySenderImpl(con, sender, tenantId, targetAddress)));
     }
 
@@ -118,7 +118,6 @@ public final class TelemetrySenderImpl extends AbstractDownstreamSender {
     public Future<ProtonDelivery> sendAndWaitForOutcome(final Message rawMessage, final SpanContext parent) {
 
         Objects.requireNonNull(rawMessage);
-
         // we create a child span (instead of a following span) because we depend
         // on the outcome of the sending operation
         final Span span = startChildSpan(parent, rawMessage);
